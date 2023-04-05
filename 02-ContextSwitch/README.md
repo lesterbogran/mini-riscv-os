@@ -1,6 +1,6 @@
 # 02-ContextSwitch -- Cambio de contexto en RISC-V
 
-Proyecto -- https://github.com/ccc-c/mini-riscv-os/tree/master/02-ContextSwitch
+Proyecto -- https://github.com/lesterbogran/mini-riscv-os/tree/master/02-ContextSwitch
 
 En el capítulo anterior [01-HelloOs](01-HelloOs.md), presentamos cómo imprimir cadenas en el puerto serie UART en la arquitectura RISC-V. En este capítulo, avanzaremos hacia el sistema operativo y presentaremos la técnica misteriosa del "cambio de contexto" (Context-Switch).
 
@@ -8,7 +8,7 @@ En el capítulo anterior [01-HelloOs](01-HelloOs.md), presentamos cómo imprimir
 
 Aquí está el código principal de 02-ContextSwitch, llamado os.c. Además del propio sistema operativo (OS), el programa también tiene una "tarea" (task):
 
-* https://github.com/ccc-c/mini-riscv-os/blob/master/02-ContextSwitch/os.c
+* https://github.com/lesterbogran/mini-riscv-os/blob/master/02-ContextSwitch/os.c
 
 ```cpp
 #include "os.h"
@@ -46,7 +46,7 @@ La tarea (task) es una función, en el archivo os.c anterior, se llama user_task
 
 Sin embargo, cada tarea debe tener un espacio de pila para poder realizar llamadas a funciones en un entorno de lenguaje C. Por lo tanto, asignamos un espacio de pila para task0 y utilizamos ctx_task.sp para apuntar al inicio de la pila.
 
-Luego, llamamos a `sys_switch(&ctx_os, &ctx_task)` para cambiar desde el programa principal a task0. La función sys_switch se encuentra en [sys.s](https://github.com/ccc-c/mini-riscv-os/blob/master/02-ContextSwitch/sys.s) y es una función en lenguaje ensamblador. Su contenido es el siguiente:
+Luego, llamamos a `sys_switch(&ctx_os, &ctx_task)` para cambiar desde el programa principal a task0. La función sys_switch se encuentra en [sys.s](https://github.com/lesterbogran/mini-riscv-os/blob/master/02-ContextSwitch/sys.s) y es una función en lenguaje ensamblador. Su contenido es el siguiente:
 
 ```s
 # Context switch
@@ -119,7 +119,7 @@ Durante el cambio de contexto en RISC-V, es necesario guardar los registros temp
 
 * https://github.com/mit-pdos/xv6-riscv/blob/riscv/kernel/swtch.S
 
-En el archivo de cabecera [riscv.h](https://github.com/ccc-c/mini-riscv-os/blob/master/02-ContextSwitch/riscv.h), definimos la estructura struct context en lenguaje C, que se ve así:
+En el archivo de cabecera [riscv.h](https://github.com/lesterbogran/mini-riscv-os/blob/master/02-ContextSwitch/riscv.h), definimos la estructura struct context en lenguaje C, que se ve así:
 
 ```cpp
 // Saved registers for kernel context switches.
