@@ -1,6 +1,6 @@
 # 01-HelloOs -- Programa de entrada y salida integrado RISC-V
 
-Proyecto -- https://github.com/ccc-c/mini-riscv-os/tree/master/01-HelloOs
+Proyecto -- https://github.com/lesterbogran/mini-riscv-os/tree/master/01-HelloOs
 
 En esta serie de artículos, presentaremos cómo construir un sistema operativo integrado en un procesador RISC-V. Este sistema operativo se llama mini-riscv-os. (En realidad, es una serie de programas en lugar de un único sistema)
 
@@ -8,7 +8,7 @@ Primero, en este capítulo, presentaremos cómo escribir un programa muy simple 
 
 ## os.c
 
-https://github.com/ccc-c/mini-riscv-os/blob/master/01-HelloOs/os.c
+https://github.com/lesterbogran/mini-riscv-os/blob/master/01-HelloOs/os.c
 
 ```cpp
 #include <stdint.h>
