@@ -134,7 +134,7 @@ os.elf: start.s os.c
 	$(CC) $(CFLAGS) -T os.ld -o os.elf $^
 ```
 
-El símbolo $^ se reemplaza por start.s os.c, por lo que la línea completa $(CC) $(CFLAGS) -T os.ld -o os.elf $^ se expande en la siguiente instrucción.
+El símbolo `$^` se reemplaza por `start.s os.c`, por lo que la línea completa `$(CC) $(CFLAGS) -T os.ld -o os.elf $^` se expande en la siguiente instrucción.
 
 ```
 riscv64-unknown-elf-gcc -nostdlib -fno-builtin -mcmodel=medany -march=rv32ima -mabi=ilp32 -T os.ld -o os.elf start.s os.c
@@ -165,7 +165,7 @@ Primero se usa make clean para borrar los archivos compilados de la última vez,
 $ riscv64-unknown-elf-gcc -nostdlib -fno-builtin -mcmodel=medany -march=rv32ima -mabi=ilp32 -T os.ld -o os.elf start.s os.c
 ```
 
-Donde -march=rv32ima indica que deseamos generar código para el conjunto de instrucciones I+M+A de 32 bits:(https://www.sifive.com/blog/all-aboard-part-1-compiler-args)：
+Donde `-march=rv32ima` indica que deseamos generar código para el conjunto de instrucciones I+M+A de 32 bits:(https://www.sifive.com/blog/all-aboard-part-1-compiler-args)：
 
 ```
 I: Conjunto de instrucciones básicas de enteros (Integer)
@@ -174,12 +174,12 @@ A: Incluye instrucciones atómicas (Atomic)
 C: Usa compresión de 16 bits (Compact) -- Nota: no hemos agregado C, por lo que las instrucciones generadas son de 32 bits puros, no comprimidas a 16 bits, ya que queremos que la longitud de las instrucciones sea consistente y que todas sean de 32 bits de principio a fin.
 ```
 
-La opción -mabi=ilp32 significa que el código binario generado es para una arquitectura de 32 bits en términos de enteros.
+La opción `-mabi=ilp32` significa que el código binario generado es para una arquitectura de 32 bits en términos de enteros.
 
 - ilp32: int, long, and pointers are all 32-bits long. long long is a 64-bit type, char is 8-bit, and short is 16-bit.
 - lp64: long and pointers are 64-bits long, while int is a 32-bit type. The other types remain the same as ilp32.
 
-El parámetro -mcmodel=medany indica que la dirección de los símbolos generados debe estar dentro de los 2GB y se pueden direccionar mediante enlaces estáticos.
+El parámetro `-mcmodel=medany` indica que la dirección de los símbolos generados debe estar dentro de los 2GB y se pueden direccionar mediante enlaces estáticos.
 
 - `-mcmodel=medany`
     * Generate code for the medium-any code model. The program and its statically defined symbols must be within any single 2 GiB address range. Programs can be statically or dynamically linked.
@@ -188,14 +188,14 @@ Los parámetros más detallados de gcc para RISC-V se pueden encontrar en el sig
 
 * https://gcc.gnu.org/onlinedocs/gcc/RISC-V-Options.html
 
-Además, se utilizan los parámetros -nostdlib -fno-builtin que significan que no se enlazará con la biblioteca estándar (ya que en sistemas empotrados a menudo se requiere crear su propia biblioteca) por favor consulte el siguiente documento:
+Además, se utilizan los parámetros `-nostdlib -fno-builtin` que significan que no se enlazará con la biblioteca estándar (ya que en sistemas empotrados a menudo se requiere crear su propia biblioteca) por favor consulte el siguiente documento:
 
 * https://gcc.gnu.org/onlinedocs/gcc/Link-Options.html
 
 
 ## Link Script (Archivo de enlace) (os.ld)
 
-Además, el parámetro -T os.ld especifica el archivo os.ld como el script de enlace: (el script de enlace es un archivo que describe cómo colocar los segmentos de programa TEXT, de datos DATA y de datos no inicializados BSS en la memoria)
+Además, el parámetro `-T os.ld` especifica el archivo os.ld como el script de enlace: (el script de enlace es un archivo que describe cómo colocar los segmentos de programa TEXT, de datos DATA y de datos no inicializados BSS en la memoria)
 
 ```ld
 OUTPUT_ARCH( "riscv" )
@@ -288,7 +288,7 @@ Cuando escribes "make qemu", Make ejecutará las siguientes instrucciones:
 qemu-system-riscv32 -nographic -smp 4 -machine virt -bios none -kernel os.elf
 ```
 
-El comando "make qemu" ejecuta la siguiente instrucción, que significa que se debe ejecutar el archivo kernel os.elf con qemu-system-riscv32. La opción "-bios none" significa que no se usará la BIOS de entrada/salida básica. La opción "-nographic" indica que no se usará el modo de gráficos. La opción "-machine virt" especifica que la arquitectura de la máquina virtual es la "virt", que es la predeterminada de QEMU para RISC-V.
+El comando `make qemu` ejecuta la siguiente instrucción, que significa que se debe ejecutar el archivo kernel os.elf con qemu-system-riscv32. La opción `-bios none` significa que no se usará la BIOS de entrada/salida básica. La opción `-nographic` indica que no se usará el modo de gráficos. La opción `-machine virt` especifica que la arquitectura de la máquina virtual es la "virt", que es la predeterminada de QEMU para RISC-V.
 
 Cuando escribes make qemu, ¡verás la siguiente pantalla!
 
