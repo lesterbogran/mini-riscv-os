@@ -176,13 +176,13 @@ C: Usa compresión de 16 bits (Compact) -- Nota: no hemos agregado C, por lo que
 
 La opción `-mabi=ilp32` significa que el código binario generado es para una arquitectura de 32 bits en términos de enteros.
 
-- ilp32: int, long, and pointers are all 32-bits long. long long is a 64-bit type, char is 8-bit, and short is 16-bit.
-- lp64: long and pointers are 64-bits long, while int is a 32-bit type. The other types remain the same as ilp32.
+- ilp32: int, long y punteros tienen todos una longitud de 32 bits. long long es un tipo de 64 bits, char es de 8 bits y short es de 16 bits.
+- lp64: long y punteros tienen una longitud de 64 bits, mientras que int es un tipo de 32 bits. Los otros tipos permanecen iguales que en ilp32.
 
 El parámetro `-mcmodel=medany` indica que la dirección de los símbolos generados debe estar dentro de los 2GB y se pueden direccionar mediante enlaces estáticos.
 
 - `-mcmodel=medany`
-    * Generate code for the medium-any code model. The program and its statically defined symbols must be within any single 2 GiB address range. Programs can be statically or dynamically linked.
+    * Generar código para el modelo de código medio-cualquiera (medium-any). El programa y sus símbolos definidos estáticamente deben estar dentro de un solo rango de dirección de 2 GiB. Los programas pueden ser vinculados de forma estática o dinámica.
 
 Los parámetros más detallados de gcc para RISC-V se pueden encontrar en el siguiente documento:
 
