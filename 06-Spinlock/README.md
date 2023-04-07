@@ -35,7 +35,7 @@ A través del código de ejemplo, se pueden observar varios puntos:
 - La palabra clave volatile en lock. 
   El uso de la palabra clave volatile permite al compilador saber que la variable puede ser accedida en situaciones impredecibles, por lo que no se deben optimizar las instrucciones que involucran la variable para evitar almacenar los resultados en un registro, sino escribirlos directamente en la memoria.
 - Función lock.
-  [`xchg(a,b)`](https://zh.m.wikibooks.org/zh-hant/X86%E7%B5%84%E5%90%88%E8%AA%9E%E8%A8%80/%E5%9F%BA%E6%9C%AC%E6%8C%87%E4%BB%A4%E9%9B%86/IA32%E6%8C%87%E4%BB%A4:xchg) 可以將 a, b 兩個變數的內容對調，並且該函式為原子操作，當 lock 值不為 0 時，執行緒便會不停的自旋等待，直到 lock 為 0 (也就是可供上鎖)為止。
+  [`xchg(a,b)`](https://zh.m.wikibooks.org/zh-hant/X86%E7%B5%84%E5%90%88%E8%AA%9E%E8%A8%80/%E5%9F%BA%E6%9C%AC%E6%8C%87%E4%BB%A4%E9%9B%86/IA32%E6%8C%87%E4%BB%A4:xchg) puede intercambiar los contenidos de las variables a y b, y esta función es una operación atómica. Cuando el valor de lock no es 0, el hilo continuará girando y esperando hasta que lock sea 0 (es decir, disponible para bloquear).
 - Función unlock.
   Debido a que solo un hilo puede adquirir el bloqueo al mismo tiempo, no hay problema de acceso concurrente al liberarlo. Debido a esto, el ejemplo no utiliza operaciones atómicas.
 
