@@ -251,8 +251,8 @@ Una vez que se salta a `trap_handler()`, ésta llamará a diferentes manejadores
                          | soft_handler() |
                  +-------+----------------+
                  |
-+----------------+-------+-----------------+
-| trap_handler() |       | timer_handler() |
++----------------+       +-----------------+
+| trap_handler() +-------+ timer_handler() |
 +----------------+       +-----------------+
                  |
                  +-------+-----------------+
