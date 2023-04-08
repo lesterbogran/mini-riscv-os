@@ -1,4 +1,3 @@
-[中文版說明文件](doc/tw)
 
 # mini-riscv-os
 
